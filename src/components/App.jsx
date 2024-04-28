@@ -62,7 +62,7 @@ export default function App() {
 
       try {
         const data = await fetchImages(query, page);
-        setImages(data.results);
+        setImages(prevImages => [...prevImages, ...data.results]);
       } catch (err) {
         setError(err.message);
         toast.error('Помилка під час завантаження даних');
