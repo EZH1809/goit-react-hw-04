@@ -30,19 +30,8 @@ export default function App() {
     setPage(1);
   };
 
-  const handleLoadMore = async () => {
-    setIsLoading(true);
-
-    try {
-      const data = await fetchImages(query, page + 1);
-      setImages(prevImages => [...prevImages, ...data.results]);
-      setPage(page + 1);
-    } catch (err) {
-      setError(err.message);
-      toast.error('Помилка під час завантаження додаткових зображень');
-    } finally {
-      setIsLoading(false);
-    }
+  const handleLoadMore = () => {
+    setPage(prevPage => prevPage + 1);
   };
 
   const handleImageClick = imageUrl => {
@@ -62,6 +51,11 @@ export default function App() {
 
       try {
         const data = await fetchImages(query, page);
+
+        if (data.results.length === 0) {
+          toast.error('За вашим запитом зображень не знайдено');
+        }
+
         setImages(prevImages => [...prevImages, ...data.results]);
       } catch (err) {
         setError(err.message);
