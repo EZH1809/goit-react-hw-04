@@ -15,7 +15,7 @@ export default function App() {
   const [error, setError] = useState('');
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('');
-   const [selectedImageUrl, setSelectedImageUrl] = useState('');
+  const [selectedImageUrl, setSelectedImageUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearch = async newQuery => {
@@ -23,7 +23,7 @@ export default function App() {
       toast.error('Введіть запит для пошуку');
       return;
     }
-
+    setImages([]);
     setIsLoading(true);
     setError('');
     setQuery(newQuery);

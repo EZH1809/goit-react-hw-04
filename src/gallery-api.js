@@ -12,6 +12,7 @@ export async function fetchImages(query, page) {
         client_id: `${ACCESS_KEY}`,
       },
     });
+
     return response.data;
   } catch (error) {
     console.log(error.message);
